@@ -4,6 +4,7 @@ export interface PostItem {
   auther: string;
   tags: string[];
   posted: string;
+  slug: string
 }
 
 export interface CreatePost extends Omit<PostItem, "posted"> {}

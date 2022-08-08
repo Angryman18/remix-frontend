@@ -2,6 +2,7 @@ import axios from "axios";
 import { CreatePost } from "~/model";
 
 const GET_AND_CREATE_POST: string = process.env.BACKEND_URL + "/post";
+const GET_SINGLE_POST : string = process.env.BACKEND_URL + '/getSinglePost'
 
 export const fetchAllPost: Function = async (): Promise<any> => {
   try {
@@ -11,6 +12,15 @@ export const fetchAllPost: Function = async (): Promise<any> => {
     return Promise.reject(err?.response);
   }
 };
+
+export const getSinglePost: Function = async (slug: string): Promise<any> => {
+  try {
+    const response = await axios(GET_SINGLE_POST + '/?slug=' + slug);
+    return response.data
+  } catch(err: any) {
+    return Promise.reject(err?.response)
+  }
+}
 
 export const createNewPost: Function = async (
   Obj: CreatePost

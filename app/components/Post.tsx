@@ -9,6 +9,10 @@ const postView = {
   mt: 0,
   borderRadius: "5px",
   p: 2,
+  '&:hover': {
+    backgroundColor: '#f1f5f9',
+    cursor: 'pointer'
+  }
 };
 
 interface Props {
@@ -19,12 +23,12 @@ export default function Post({ post }: Props): JSX.Element {
 
   const navigate = useNavigate()
 
-  const handleClick = (postTitle: string) => () => {
-    navigate(`/post/${postTitle}`, {state: post})
+  const handleClick = (slug: string) => () => {
+    navigate(`/post/${slug}`)
   }
 
   return (
-    <Paper onClick={handleClick(post.title)} sx={postView} variant="outlined">
+    <Paper onClick={handleClick(post.slug)} sx={postView} variant="outlined">
       <Typography variant="h6">{post.title}</Typography>
       <Typography variant="body1" sx={{ color: "#94a3b8" }}>
         {post.description.slice(0, 100) + "..."}

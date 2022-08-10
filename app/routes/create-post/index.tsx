@@ -1,4 +1,4 @@
-import styles from "../../styles/home.css";
+import styles from "../../styles/wrapper.css";
 import { useNavigate } from "@remix-run/react";
 import { NavigateFunction } from "@remix-run/react";
 import { Form } from "@remix-run/react";

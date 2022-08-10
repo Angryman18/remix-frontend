@@ -5,7 +5,7 @@ import { LoaderFunction } from "@remix-run/node";
 // COMPONENTS
 import { Button, Box } from "@mui/material";
 import Post from "../components/Post";
-import styles from "../styles/home.css";
+import styles from "../styles/wrapper.css";
 
 // INTERFACES
 import { PostItem } from "~/model";

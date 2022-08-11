@@ -41,7 +41,7 @@ export default function Post({ post }: Props): JSX.Element {
         {new Date(post.posted).toDateString()}
       </Typography>
       {post?.tags?.map((tag: string): JSX.Element => {
-        return <Chip key={tag} label={tag} sx={{ mx: 0.5 }} size="small" />;
+        return <Chip key={tag} color='info' label={tag} sx={{ mx: 0.5 }} size="small" />;
       })}
     </Paper>
   );

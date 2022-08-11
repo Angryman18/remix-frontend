@@ -4,6 +4,9 @@ import { getSinglePost } from "~/apis/fetch_post";
 import { Box, Typography, Stack } from "@mui/material";
 import styles from "../../../styles/wrapper.css";
 import { BiEdit } from "react-icons/bi";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+// import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -30,13 +33,13 @@ export default function PostTitle() {
   const [content] = useLoaderData();
 
   const location = useLocation();
-  console.log(content);
+
   return (
     <div className="wrapper">
       <Typography variant="h4">{content?.title}</Typography>
       <Stack direction="row" alignItems="center" gap={0.5}>
         {/* {post.description.slice(0, 100) + "..."} */}
-        <BiEdit style={{ fontSize: "1.3rem", color: '#94a3b8' }} />
+        <BiEdit style={{ fontSize: "1.3rem", color: "#94a3b8" }} />
         <Typography variant="body1" sx={{ color: "#94a3b8" }}>
           {content.auther}
         </Typography>
@@ -44,6 +47,7 @@ export default function PostTitle() {
       <Typography variant="body2" sx={{ color: "#94a3b8", pt: 1 }} gutterBottom>
         {new Date(content.posted).toDateString()}
       </Typography>
+      <Typography>{content?.description}</Typography>
     </div>
   );
 }

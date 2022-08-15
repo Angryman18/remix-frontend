@@ -1,15 +1,31 @@
 import { LoaderFunction } from "@remix-run/node";
+import * as React from 'react';
 import { useParams, useLoaderData, useLocation } from "@remix-run/react";
 import { getSinglePost } from "~/apis/fetch_post";
 import { Box, Typography, Stack } from "@mui/material";
 import styles from "../../../styles/wrapper.css";
 import { BiEdit } from "react-icons/bi";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-// import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import {
+  parse,
+  transform,
+  type RenderableTreeNodes,
+  renderers,
+} from "@markdoc/markdoc";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
+}
+
+export const markdown = (markdown: string): RenderableTreeNodes => {
+  return transform(parse(markdown));
+};
+
+interface Props {
+  content: string;
+}
+
+export function Markdown({ content }: Props) {
+  return <>{renderers.react(markdown(content), React)}</>;
 }
 
 export const loader: LoaderFunction = async ({ params }: any) => {
@@ -47,7 +63,8 @@ export default function PostTitle() {
       <Typography variant="body2" sx={{ color: "#94a3b8", pt: 1 }} gutterBottom>
         {new Date(content.posted).toDateString()}
       </Typography>
-      <Typography>{content?.description}</Typography>
+      {/* <Typography>{content?.description}</Typography> */}
+      <Markdown content={content?.description} />
     </div>
   );
 }
